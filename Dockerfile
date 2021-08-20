@@ -3,8 +3,8 @@ FROM golang:1.16
 ENV GO111MODULE=on
 ENV GOSUMDB=off
 
-COPY . /go/src/login_server
-WORKDIR /go/src/login_server
+COPY . /go/src/MonGoAuthBE
+WORKDIR /go/src/MonGoAuthBE
 
-RUN go build -o login_server
-CMD [ "/go/src/login_server/login_server" ]
+RUN go build -o MonGoAuthBE
+CMD [ "/go/src/MonGoAuthBE/lMonGoAuthBE" ]
