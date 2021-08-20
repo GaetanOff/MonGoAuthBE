@@ -16,8 +16,8 @@ spec:
     spec:
       containers:
       - name: MonGoAuthBE 
-        image: df424/login_server:latest
-        command: [ "/go/src/login_server/login_server" ]
+        image: GaetanOff/MonGoAuthBE:latest
+        command: [ "/go/src/MonGoAuthBE/MonGoAuthBE" ]
         args: [
           "--mongo-uri", "mongodb://192.168.0.191:27017"
         ]
