@@ -1,1 +1,40 @@
-#TODO
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: MonGoAuthBE-deployment
+  labels:
+    app: MonGoAuthBE 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: MonGoAuthBE
+  template:
+    metadata:
+      labels:
+        app: MonGoAuthBE
+    spec:
+      containers:
+      - name: MonGoAuthBE 
+        image: df424/login_server:latest
+        command: [ "/go/src/login_server/login_server" ]
+        args: [
+          "--mongo-uri", "mongodb://192.168.0.191:27017"
+        ]
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: MonGoAuthBE-service
+spec:
+  selector:
+    app: MonGoAuthBE
+  ports:
+    - protocol: TCP
+      port: 8080
+      targetPort: 8080
+  type: LoadBalancer
